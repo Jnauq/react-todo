@@ -14,21 +14,24 @@ class TodoItem extends Component {
   }
 
   render() {
-    const { id, title } = this.props.todo
+    const { id, title, created } = this.props.todo
     return (
         <div style={this.getStyle()}>
             <p>
               <input type="checkbox" onChange={this.props.toggleComplete.bind(this, id)} /> { ' ' }
-              { title }
+              { title } 
               <button style={btnDelete} onClick={this.props.delItem.bind(this, id)}> X </button>
             </p>
+            <p style={{fontSize: '10px'}}>Created on: { created }</p>
         </div>
     );
   }
 }
 
 TodoItem.propTypes = {
-    todo: PropTypes.object.isRequired
+    todo: PropTypes.object.isRequired,
+    toggleComplete: PropTypes.func.isRequired,
+    delItem: PropTypes.func.isRequired
 }
 
 const btnDelete = {
